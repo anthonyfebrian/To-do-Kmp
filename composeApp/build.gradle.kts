@@ -49,6 +49,7 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
 
+            implementation(libs.kotlinx.datetime)
 
 //          Room
             implementation(libs.room.runtime)
