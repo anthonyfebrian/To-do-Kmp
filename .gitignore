@@ -1,0 +1,35 @@
+# Android Studio.gradle/
+.idea/
+.gradle/
+build/
+local.properties
+
+# Kotlin Multiplatform
+*.local.properties
+.konan/
+.kotlin/
+
+# iOS
+*.xcworkspace
+*.xcodeproj
+DerivedData/
+*.hmap
+
+# macOS
+*.dsym
+
+# Linux
+*.so# Windows
+*.dll
+*.exe
+
+# IDE-specific files
+*.iml
+*.ipr
+*.iws
+
+# Miscellaneous
+*.log
+*.bin
+*.keystore
+*.jks
