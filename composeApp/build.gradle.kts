@@ -40,6 +40,8 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.koin.androidx.compose)
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -49,8 +51,19 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(libs.jetbrains.androidx.viewmodel)
 
             implementation(libs.kotlinx.datetime)
+
+            //Jetbrains adaptive
+            implementation(libs.jetbrains.adaptive)
+            implementation(libs.jetbrains.adaptive.layout)
+            implementation(libs.jetbrains.adaptive.navigation)
+
+            //Koin
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose.viewmodel)
 
 //          Room
             implementation(libs.room.runtime)

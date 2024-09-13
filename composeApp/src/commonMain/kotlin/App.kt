@@ -1,36 +1,42 @@
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
+import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
+import androidx.compose.material3.adaptive.layout.AnimatedPane
+import androidx.compose.material3.adaptive.layout.ListDetailPaneScaffold
+import androidx.compose.material3.adaptive.layout.ListDetailPaneScaffoldRole
+import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
+import androidx.compose.runtime.Composable
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import presentation.resources.M3Theme
+import presentation.screen.DetailTodoScreen
+import presentation.screen.ListTodoScreen
 
-import todo.composeapp.generated.resources.Res
-import todo.composeapp.generated.resources.compose_multiplatform
-
-@Composable
+@OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Preview
+@Composable
 fun App() {
     M3Theme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
+        val navigator = rememberListDetailPaneScaffoldNavigator()
+        ListDetailPaneScaffold(
+            directive = navigator.scaffoldDirective,
+            value = navigator.scaffoldValue,
+            listPane = {
+                ListTodoScreen(
+                    onClick = {
+                        navigator.navigateTo(ListDetailPaneScaffoldRole.Detail)
+                    }
+                )
+            },
+            detailPane = {
+                AnimatedPane {
+                    DetailTodoScreen()
                 }
             }
-        }
+        )
     }
+}
+
+@Preview
+@Composable
+fun preview() {
+    Text("Test")
 }
