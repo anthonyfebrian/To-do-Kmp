@@ -1,6 +1,6 @@
 package data.repository
 
-import data.local.datasource.TodoDataSource
+import data.local.datasource.TodoLocalDataSource
 import data.local.entity.TodoEntity
 import domain.entity.Todo
 import domain.repository.TodoRepository
@@ -10,7 +10,7 @@ import kotlinx.datetime.Clock
 import utils.mapper.toDomain
 
 class TodoRepositoryImpl(
-    private val dataSource: TodoDataSource,
+    private val dataSource: TodoLocalDataSource,
 ) : TodoRepository {
     override suspend fun save(title: String, body: String) {
         val currentInstant = Clock.System.now()
